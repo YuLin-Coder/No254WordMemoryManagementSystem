@@ -1,0 +1,426 @@
+*{
+	margin: 0px;
+	padding: 0px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+a{
+	text-decoration: none;
+}
+html{
+	width: 100%;
+}
+body{
+	width: 100%;
+	background-color: #54364a;
+    background-image: url(<%=basePath%>media/lay/images/a.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #ffffff;
+}
+/*layer弹出层背景设置*/
+
+.layui-layer{
+	background-image: url(<%=basePath%>media/lay/images/h.jpg);
+	background-size: cover;
+}
+
+/*背景设置*/
+.bg-changer{
+	position: fixed;
+	left: 0px;
+	top: -110px;
+	width: 100%;
+	/*height: 100px;*/
+	
+}
+.bg-changer #changer-set{
+	position: fixed;
+	top: 111px;
+	right: 0px;
+	width: 33px;
+	height: 33px;
+	background: rgba(0,0,0,0.5);
+	border: 1px solid rgba(255,255,255, 0.3);
+	border-top: 0px;
+	color: #fff;
+	text-align: center;
+	line-height: 33px;
+	cursor: pointer;
+	
+}
+.bg-changer #changer-set i{
+	display: block;
+	font-size: 25px;
+	/* 设置默认样式，开启3d硬件加速 */
+    -webkit-transform:translate3d(0,0,0);
+    -moz-transform:translate3d(0,0,0);
+    transform:translate3d(0,0,0);
+    /* 设置动画，animation:动画名称 动画播放时长单位秒或微秒 动画播放的速度曲线linear为匀速 动画播放次数infinite为循环播放; */
+    -webkit-animation:play 3s linear infinite;
+    -moz-animation:play 3s linear infinite;
+    animation:play 3s linear infinite;
+}
+
+@-webkit-keyframes play{
+	0%  {
+	    -webkit-transform:rotateZ(0deg);
+	}
+	100% {
+	    -webkit-transform:rotateZ(360deg);
+	}
+}
+@-moz-keyframes play{
+	0%  {
+	    -moz-transform:rotateZ(0deg);
+	}
+	100% {
+	    -moz-transform:rotateZ(360deg);
+	}
+}
+@keyframes play{
+	0%  {
+	    transform:rotateZ(0deg);
+	}
+	100% {
+	    transform:rotateZ(360deg);
+	}
+}
+.bg-changer .changer-list{
+	width: 100%;
+	height: 100px;
+	/*display: none;*/
+	padding-top: 10px;
+	background: rgba(0,0,0,0.5);
+	border: 1px solid rgba(255,255,255, 0.3);
+}
+.bg-changer .changer-list .swiper-slide{
+	width: 80px;
+}
+.bg-changer .changer-list img.item{
+	width: 80px;
+	height: 80px;
+}
+.bg-changer .changer-list span{
+	display: block;
+	width: 80px;
+	height: 80px;
+	color: #fff;
+	text-align: center;
+	line-height: 80px;
+	background: #4390EE url() 0 0 no-repeat;
+}
+.bg-changer .bg-out{
+	width: 100%;
+	height: 900px;
+	background: red url() 0 0 no-repeat;
+	opacity: 0;
+	display: none;
+}
+/*登录样式*/
+.login-logo{
+	width: 100%;
+	padding-top: 70px;
+	height: 50px;
+}
+.login-logo h1{
+	color: #fff;
+	font-size: 25px;
+	text-align: center;
+}
+.login-box{
+	width: 310px;
+	height: 350px;
+	padding: 20px 15px 15px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255,255,255, 0.3);
+    margin: 0 auto;
+}
+.login-box h3{
+	font-weight: 300;
+    margin-bottom: 25px;
+    color: #fff;
+    margin-left: 0;
+    font-size: 22px;
+    margin-top: 20px;
+}
+.layui-form-item{
+	margin-top: 15px;
+}
+.layui-form-pane .layui-form-label{
+	
+	border-radius: 6px;
+	background-color: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 0px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+}
+.layui-form-pane .login-form{
+	width: 25px;
+}
+.layui-form-pane .layui-form-label i{
+	color: #fff;
+	font-size: 18px;
+	line-height: 14px;
+}
+.layui-form-item .login-inline{
+	width: 245px;
+	/*margin-left: 60px;*/
+	/*background-color: rgba(0, 0, 0, 0.25);*/
+}
+@media screen and (max-width: 450px){
+	.layui-form-item .layui-input-inline {
+	    margin: 0 0 10px 56px;
+	}
+}
+
+.layui-form-label i{
+	font-size: 14px;
+
+}
+
+.layui-form-pane .layui-input,.layui-form-pane .layui-textarea,.layui-form-pane .layui-select{
+	background-color: rgba(0, 0, 0, 0.25);
+	border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    color: #fff;
+}
+.layui-input:focus, .layui-textarea:focus, .layui-select:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.layui-input::-webkit-input-placeholder, .layui-textarea::-webkit-input-placeholder, .layui-select::-webkit-input-placeholder { color:#fff; }
+.layui-input::-moz-placeholder, .layui-textarea::-moz-placeholder, .layui-select::-moz-placeholder { color:#fff; }
+
+
+.login-title {
+    font-weight: bold;
+    color: #fff;
+    font-size: 14px;
+}
+
+
+.form-actions {
+    background-color: rgba(0, 0, 0, 0.25);
+    margin-left: -15px;
+    margin-right: -15px;
+    text-align: center;
+    margin-top: 20px;
+    padding: 19px 20px 20px;
+}
+
+.forgot {
+	width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    color: #fff;
+}
+.forgot:hover {
+    color: #fff;
+}
+
+.btn {
+    /*display: inline-block;*/
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    color: #ffffff;
+    background-color: rgba(240, 173, 78, 0.55);
+    border-color: #eea236;
+    margin:0 auto;
+}
+
+/*头部*/
+.container{
+	width: 100%;
+	height: 71px;
+	background-color: rgba(0, 0, 0, 0.25);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.container .open-nav{
+	float: left;
+	line-height: 71px;
+	padding-left: 10px;
+	display: none;
+	cursor: pointer;
+	
+}
+.container .open-nav i{
+	cursor: pointer;
+}
+.container .logo{
+	float: left;
+	color: #fff;
+	font-size: 25px;
+	padding-left: 20px;
+	line-height: 71px;
+}
+.container .right{
+	float: right;
+}
+/*主体*/
+.wrapper{
+	display: table;
+	position: relative;
+	width: 100%;
+}
+.wrapper .left-nav{
+	background-color: rgba(0, 0, 0, 0.20);
+    color: #FFF;
+    display: table-cell;
+    float: none!important;
+    vertical-align: top;
+    max-width: 250px;
+    /*width: 0px;*/
+}
+.wrapper .left-nav #nav li{
+	width: 250px;
+	background-color: rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.wrapper .left-nav #nav li:hover{
+	background-color: rgba(0, 0, 0, 0.3);
+}
+.wrapper .left-nav #nav .current{
+	background-color: rgba(0, 0, 0, 0.3);
+}
+.wrapper .left-nav #nav li a{
+	width: 230px;
+	color: #fff;
+	font-size: 14px;
+	padding: 15px 15px 15px 20px;
+	display: block;
+}
+
+.wrapper .left-nav #nav li .sub-menu{
+	display: none;
+	background-color:rgba(0, 0, 0, 0.3)
+}
+.wrapper .left-nav #nav li .opened{
+	display: block;
+}
+.wrapper .left-nav #nav li .opened{
+
+}
+.wrapper .left-nav #nav li .opened .current{
+	background-color:rgba(0, 0, 0, 0.4)
+}
+.wrapper .left-nav #nav li .sub-menu li a{
+	padding: 12px 15px 12px 45px;
+	font-size: 14px;
+}
+.wrapper .left-nav #nav li .sub-menu li a i{
+	font-size: 12px;
+}
+.wrapper .left-nav #nav li a i{
+	padding-right: 10px;
+	line-height: 16px;
+}
+.wrapper .left-nav #nav li .nav_right{
+	float: right;
+	font-size: 12px;
+}
+.wrapper .page-content{
+	color: #FFF;
+    padding: 20px 30px;
+    display: table-cell;
+    float: none!important;
+    word-wrap:break-word;
+    word-break:break-all;
+
+}
+.wrapper .page-content .content{
+	min-height: 500px;
+	/*width: 100%;*/
+	/*height: 300px;*/
+	/*background: red url() 0 0 no-repeat;*/
+}
+
+xblock{
+    display: block;
+    margin-bottom: 10px;
+    padding: 5px;
+    line-height: 22px;
+    /* border-left: 5px solid #009688; */
+    border-radius: 0 2px 2px 0;
+    background-color: rgba(0,0,0,0.2);
+}
+.x-right{
+  float: right;
+}
+
+.footer{
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.25);
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	line-height: 41px;
+	color: #fff;
+	/*padding-left: 10px;*/
+}
+.footer .copyright{
+	margin-left: 10px;
+}
+
+
+@media screen and (max-width: 1024px){
+	.wrapper .left-nav{
+		width: 0px;
+	}
+	.wrapper .left-nav #side-nav{
+		display: none;
+	}
+	.container .open-nav{
+		display: block;
+	}
+}
+
+@media screen and (min-width: 1024px){
+	.wrapper .left-nav{
+		width: 250px;
+	}
+	.wrapper .left-nav #side-nav{
+		display: block;
+	}
+	.container .open-nav{
+		display: none;
+	}
+}
+
+@media screen and (max-width: 1024px){
+	.login-box{
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 500px){
+	.container .right{
+		display: none;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.xbs768{
+		display: none;
+	}
+}
+
+  

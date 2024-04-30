@@ -1,0 +1,49 @@
+
+
+<import src="../../wxParse/wxParse.wxml"/> 
+<text class='title'>{{title}}</text>
+<text class='shijian'>{{shijian}}</text>
+<view class='hui'></view>
+ <view class="container1">
+  <button bindtap='getScancode'>扫码</button>
+  <view wx:if="{{result !=''}}">
+  <!--  <view>产品id:{{result}}</view>-->
+  </view>
+</view>
+
+<view class="wxParse" style="margin-top:40px">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+</view>
+ 
+
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <image src='../../images/bg.jpg' mode='aspectFill' class='bg'></image>
+
+  
+
+   
+  <view class='hang'><view class='z'>商品名:</view><input  value="{{caipinming}}"  bindinput ="caipinminginput" name="caipinming" placeholder="请输入商品名"  type='text' /><view class='y'></view></view>
+  <view class='hang'><view class='z'>价格 :</view><input value="{{jiage}}"    bindinput ="jiageinput" name="jiage" placeholder="请输入价格"  type='text' /><view class='y'></view></view>
+  <view class='hang'><view class='z'>购买人 :</view><input     bindinput ="dingcanreninput" name="dingcanren" placeholder="请输入姓名"  type='text' /><view class='y'></view></view>
+  <view class='hang'><view class='z'>联系方式 :</view><input   bindinput ="dianhuainput" name="dianhua" placeholder="请输入电话"  type='text' /><view class='y'></view></view>
+<radio-group bindchange="radiochange">
+  <radio value='微信'>微信</radio>
+<radio value='支付宝' checked>支付宝</radio> 
+</radio-group>
+
+
+
+  <view class='hang'> 
+  <view class='y'></view>
+  </view>
+  
+ 
+     <button   bindtap="dingcanclick" class='but'><image src='../../images/but2.png' mode='aspectFill'></image><text>购买</text></button>
+ 
+</form>
+
+
+
+
+

@@ -1,0 +1,22 @@
+<view style="text-align:center"> </view>
+<navigator class='tx_box' url="/pages/boy_ziliao/boy_ziliao?title=boy_ziliao">
+  <image class='tx' src='{{avatar}}' mode='aspectFill'></image>
+  <image class='bq' src='../../images/bq_man.png'></image>
+</navigator>
+<navigator class='nc' url='/pages/boy_ziliao/boy_ziliao?title=boy_hy'>
+  <image src='../../images/shenfen.png'></image>
+  <text>{{nick_name}}({{juese}})</text>
+</navigator>
+<view class='hui'></view>
+<view class='sige'>
+
+  <navigator url="/pages/myxuanti/myxuanti?title=boy_about">
+    <image src='../../images/sige_1.png' mode='widthFix'></image>
+    <text>学生选题</text>
+  </navigator>
+
+  <navigator url="/pages/shangchuan/shangchuan?id=boy_about">
+    <image src='../../images/sige_4.png' mode='widthFix'></image>
+    <text>上传论文</text>
+  </navigator>
+</view>

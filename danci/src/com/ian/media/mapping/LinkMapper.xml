@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ian.media.dao.LinkMapper" >
+  <resultMap id="BaseResultMap" type="com.ian.media.model.Link" >
+    <id column="linkId" jdbcType="INTEGER" property="linkid" />
+    <result column="schoolId" jdbcType="INTEGER" property="schoolid" />
+    <result column="linkName" jdbcType="VARCHAR" property="linkname" />
+    <result column="orders" jdbcType="INTEGER" property="orders" />
+    <result column="linkUrl" jdbcType="LONGVARCHAR" property="linkurl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+  linkId ,schoolId,linkName,linkUrl,orders
+  </sql>
+<select id="getLinkList" parameterType="int" resultType="com.ian.media.model.Link" >
+		select 
+   		<include refid="Base_Column_List"/>
+   		from link where 1=1 
+   		and schoolId = #{schoolId}
+</select>
+   <select id="get" resultMap="BaseResultMap" parameterType="com.ian.media.model.Link">
+   		select 
+   		<include refid="Base_Column_List"/>
+   		from link where 1=1 
+
+   		<if test="linkid != null">
+   				and linkid = #{linkid,jdbcType=INTEGER}
+   		</if>
+   		<if test="schoolid != null">
+   				and schoolid = #{schoolid,jdbcType=INTEGER}
+   		</if>
+   			
+   		<if test="pageIndex !=null">
+   		ORDER BY orders ASC
+            limit #{pageIndex},#{rows}
+        </if>
+   </select>
+   <select id="getCount" resultType="int" parameterType="com.ian.media.model.Link">
+   	select 
+   		count(*)
+   			from link where 1=1
+   		<if test="linkid != null">
+   				and linkid = #{linkid,jdbcType=INTEGER}
+   		</if>
+   		<if test="schoolid != null">
+   				and schoolid = #{schoolid,jdbcType=INTEGER}
+   		</if>
+   		ORDER BY orders ASC
+   </select>
+    
+    <delete id="deleteMoreByPK" parameterType = "list">
+ 	    delete from link
+   			 where linkid in
+     <foreach collection="list" index="index" item="item" open="("
+    separator="," close=")">
+	   #{item}  
+	</foreach>
+	</delete>
+	<insert id="insertSelective" parameterType="com.ian.media.model.Link" >
+ 		insert into  link  (schoolid,linkname,linkurl,orders)
+ 		values( #{schoolid,jdbcType=INTEGER}, #{linkname,jdbcType=LONGVARCHAR}, #{linkurl,jdbcType=VARCHAR},#{orders,jdbcType=INTEGER});
+ 	</insert>
+ 	 	<update id="updateByPrimaryKeySelective" parameterType="com.ian.media.model.Link">
+ 	 		UPDATE link s
+ 		<set>
+ 		<if test="linkurl != null" >
+     	  s.`linkurl` = #{linkurl,jdbcType=LONGVARCHAR},
+     	 </if>
+ 		<if test="linkname != null" >
+     	  s.`linkname` = #{linkname,jdbcType=VARCHAR},
+     	 </if>
+ 		<if test="schoolid != null" >
+     	  s.`schoolid` = #{schoolid,jdbcType=INTEGER},
+     	 </if>
+ 		<if test="orders != null" >
+     	  s.`orders` = #{orders,jdbcType=INTEGER}
+     	 </if>
+ 		</set>
+ 		WHERE s.`linkid` = #{linkid,jdbcType=INTEGER}
+ 	</update>
+</mapper>

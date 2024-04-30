@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ian.media.dao.MobileUserMapper" >
+  <resultMap id="BaseResultMap" type="com.ian.media.model.MobileUser" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="tjrtel" property="tjrtel" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="DOUBLE" />
+    <result column="points" property="points" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type, name, tel, password, province, tjrtel, level, money, points
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from mobile_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+   <select id="get" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        <include refid="Base_Column_List"/>
+        from mobile_user
+        where 1=1
+        <if test="id != null">
+            and id=#{id,jdbcType=VARCHAR}
+        </if>
+        <if test="name != null">
+            and name like CONCAT('%', #{name}, '%')
+        </if>
+         <if test="pmname != null">
+            and pmname like CONCAT('%', #{pmname}, '%')
+        </if>
+        <if test="state != null">
+            and state=#{state,jdbcType=VARCHAR}
+        </if>
+        <if test="pageIndex !=null">
+            limit #{pageIndex},#{rows}
+        </if>
+    </select>
+    
+   <select id="getCount" resultType="int" parameterType="java.util.HashMap">
+        select
+        count(*)
+        from mobile_user
+        where 1=1
+        <if test="id != null">
+            and id=#{id,jdbcType=VARCHAR}
+        </if>
+        <if test="name != null">
+            and name like CONCAT('%', #{name}, '%')
+        </if>
+        <if test="pmname != null">
+            and pmname like CONCAT('%', #{pmname}, '%')
+        </if>
+        <if test="state != null">
+            and state=#{state,jdbcType=VARCHAR}
+        </if>
+    </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from mobile_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ian.media.model.MobileUser" >
+    insert into mobile_user (id, type, name, 
+      tel, password, province, 
+      tjrtel, level, money, 
+      points)
+    values (#{id,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{tjrtel,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}, 
+      #{points,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ian.media.model.MobileUser" >
+    insert into mobile_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="tjrtel != null" >
+        tjrtel,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="points != null" >
+        points,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="tjrtel != null" >
+        #{tjrtel,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="points != null" >
+        #{points,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ian.media.model.MobileUser" >
+    update mobile_user
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="tjrtel != null" >
+        tjrtel = #{tjrtel,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="points != null" >
+        points = #{points,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ian.media.model.MobileUser" >
+    update mobile_user
+    set type = #{type,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      tjrtel = #{tjrtel,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DOUBLE},
+      points = #{points,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+   <delete id="deleteMoreByPK" parameterType="list" >
+    delete from mobile_user
+    where id in
+     <foreach collection="list" index="index" item="item" open="("
+    separator="," close=")">
+	   #{item}  
+	</foreach>
+  </delete>
+</mapper>

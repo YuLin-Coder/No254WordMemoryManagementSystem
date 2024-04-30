@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ian.media.dao.PowerRoleUserMapper" >
+  <resultMap id="BaseResultMap" type="com.ian.media.model.PowerRoleUser" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="pow_id" property="powId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pow_id, user_id, role_id
+  </sql>
+  <select id="get" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        <include refid="Base_Column_List"/>
+        from power_role_user
+        where 1=1
+        <if test="id != null">
+            and id=#{id,jdbcType=VARCHAR}
+        </if>
+        <if test="pow_id != null">
+            and pow_id=#{pow_id,jdbcType=VARCHAR}
+        </if>
+        <if test="user_id != null">
+            and user_id=#{user_id,jdbcType=VARCHAR}
+        </if>
+        <if test="role_id != null">
+            and role_id=#{role_id,jdbcType=INTEGER}
+        </if>
+
+    </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from power_role_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByUsreId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from power_role_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from power_role_user 
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByPrimaryUserId" parameterType="java.lang.String" >
+    delete from power_role_user where 
+     user_id=#{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ian.media.model.PowerRoleUser" >
+    insert into power_role_user (id, pow_id, user_id, 
+      role_id)
+    values (#{id,jdbcType=VARCHAR}, #{powId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{roleId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ian.media.model.PowerRoleUser" >
+    insert into power_role_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="powId != null" >
+        pow_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="powId != null" >
+        #{powId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ian.media.model.PowerRoleUser" >
+    update power_role_user
+    <set >
+      <if test="powId != null" >
+        pow_id = #{powId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ian.media.model.PowerRoleUser" >
+    update power_role_user
+    set pow_id = #{powId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ian.media.dao.PowerUserMapper" >
+  <resultMap id="BaseResultMap" type="com.ian.media.model.PowerUser" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="mobile_power_state" property="mobilePowerState" jdbcType="INTEGER" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="job_number" property="jobNumber" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="login_time" property="loginTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="update_user_name" property="updateUserName" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="column01" property="column01" jdbcType="VARCHAR" />
+    <result column="column02" property="column02" jdbcType="VARCHAR" />
+    <result column="column03" property="column03" jdbcType="VARCHAR" />
+    <result column="column04" property="column04" jdbcType="VARCHAR" />
+    <result column="column05" property="column05" jdbcType="VARCHAR" />
+    <result column="column06" property="column06" jdbcType="VARCHAR" />
+    <result column="column07" property="column07" jdbcType="VARCHAR" />
+    <result column="column08" property="column08" jdbcType="VARCHAR" />
+    <result column="column09" property="column09" jdbcType="VARCHAR" />
+    <result column="column10" property="column10" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, login_name, user_name, password, mobile_power_state, department, job_number, tel,email,sex,
+    state, login_time, update_time, update_user_id, update_user_name,role_id, column01, column02, 
+    column03, column04, column05, column06, column07, column08, column09, column10
+  </sql>
+  <select id="getRoleUser"  resultMap="BaseResultMap" parameterType="java.util.HashMap">
+  select 
+  <include refid="Base_Column_List"/>
+  ,a.role_id
+  from power_user
+  left join power_role_user A on A.user_id=power_user.id
+  where id=#{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="get" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        users.*,role.role_name
+        from power_user users,power_role role
+        where users.role_id=role.id
+        <if test="id != null">
+            and users.id=#{id,jdbcType=VARCHAR}
+        </if>
+        <if test="loginName != null">
+            and users.login_name=#{loginName,jdbcType=VARCHAR}
+        </if>
+        <if test="password != null">
+            and users.password=#{password,jdbcType=VARCHAR}
+        </if>
+        <if test="roleId != null">
+            and users.role_id=#{roleId,jdbcType=VARCHAR}
+        </if>
+        <if test="mobilePowerState != null">
+            and users.mobile_power_state=#{mobilePowerState,jdbcType=INTEGER}
+        </if>
+        <if test="state != null">
+            and users.state=#{state,jdbcType=INTEGER}
+        </if>
+        <if test="update_user_id != null">
+            and users.update_user_id=#{update_user_id,jdbcType=INTEGER}
+        </if>
+     
+        order by users.update_time desc
+        <if test="index !=null">
+            limit #{index},#{rows}
+        </if>
+
+    </select>
+    
+    <select id="getCount" resultType="int" parameterType="java.util.HashMap">
+        select
+        count(*)
+        from power_user
+        where 1=1
+        <if test="id != null">
+            and id=#{id,jdbcType=VARCHAR}
+        </if>
+        <if test="loginName != null">
+            and login_name=#{loginName,jdbcType=VARCHAR}
+        </if>
+        <if test="password != null">
+            and password=#{password,jdbcType=VARCHAR}
+        </if>
+         <if test="roleId != null">
+            and role_id=#{roleId,jdbcType=VARCHAR}
+        </if>
+        <if test="mobilePowerState != null">
+            and mobile_power_state=#{mobilePowerState,jdbcType=INTEGER}
+        </if>
+        <if test="state != null">
+            and state=#{state,jdbcType=INTEGER}
+        </if>
+        <if test="update_user_id != null">
+            and update_user_id=#{update_user_id,jdbcType=INTEGER}
+        </if>
+    </select>
+  
+  
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from power_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from power_user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+   <delete id="deleteMoreByPK" parameterType="list" >
+    delete from power_user
+    where id in
+     <foreach collection="list" index="index" item="item" open="("
+    separator="," close=")">
+	   #{item}  
+	</foreach>
+  </delete>
+  
+  <insert id="insert" parameterType="com.ian.media.model.PowerUser" >
+    insert into power_user (id, login_name, user_name, 
+      password, mobile_power_state, department, tel,email,sex,
+      job_number, state, login_time, 
+      update_time, update_user_id, update_user_name,role_id, 
+      column01, column02, column03, 
+      column04, column05, column06, 
+      column07, column08, column09, 
+      column10)
+    values (#{id,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{mobilePowerState,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{sex,jdbcType=INTEGER},
+      #{jobNumber,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{loginTime,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=VARCHAR}, #{updateUserId,jdbcType=VARCHAR}, #{updateUserName,jdbcType=VARCHAR}, 
+      #{roleId,jdbcType=VARCHAR},
+      #{column01,jdbcType=VARCHAR}, #{column02,jdbcType=VARCHAR}, #{column03,jdbcType=VARCHAR}, 
+      #{column04,jdbcType=VARCHAR}, #{column05,jdbcType=VARCHAR}, #{column06,jdbcType=VARCHAR}, 
+      #{column07,jdbcType=VARCHAR}, #{column08,jdbcType=VARCHAR}, #{column09,jdbcType=VARCHAR}, 
+      #{column10,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ian.media.model.PowerUser" >
+    insert into power_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="mobilePowerState != null" >
+        mobile_power_state,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="jobNumber != null" >
+        job_number,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="loginTime != null" >
+        login_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id,
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="column01 != null" >
+        column01,
+      </if>
+      <if test="column02 != null" >
+        column02,
+      </if>
+      <if test="column03 != null" >
+        column03,
+      </if>
+      <if test="column04 != null" >
+        column04,
+      </if>
+      <if test="column05 != null" >
+        column05,
+      </if>
+      <if test="column06 != null" >
+        column06,
+      </if>
+      <if test="column07 != null" >
+        column07,
+      </if>
+      <if test="column08 != null" >
+        column08,
+      </if>
+      <if test="column09 != null" >
+        column09,
+      </if>
+      <if test="column10 != null" >
+        column10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePowerState != null" >
+        #{mobilePowerState,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="jobNumber != null" >
+        #{jobNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+         #{roleId,jdbcType=VARCHAR},
+        </if>
+      <if test="column01 != null" >
+        #{column01,jdbcType=VARCHAR},
+      </if>
+      <if test="column02 != null" >
+        #{column02,jdbcType=VARCHAR},
+      </if>
+      <if test="column03 != null" >
+        #{column03,jdbcType=VARCHAR},
+      </if>
+      <if test="column04 != null" >
+        #{column04,jdbcType=VARCHAR},
+      </if>
+      <if test="column05 != null" >
+        #{column05,jdbcType=VARCHAR},
+      </if>
+      <if test="column06 != null" >
+        #{column06,jdbcType=VARCHAR},
+      </if>
+      <if test="column07 != null" >
+        #{column07,jdbcType=VARCHAR},
+      </if>
+      <if test="column08 != null" >
+        #{column08,jdbcType=VARCHAR},
+      </if>
+      <if test="column09 != null" >
+        #{column09,jdbcType=VARCHAR},
+      </if>
+      <if test="column10 != null" >
+        #{column10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ian.media.model.PowerUser" >
+    update power_user
+    <set >
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePowerState != null" >
+        mobile_power_state = #{mobilePowerState,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+       <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+       <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+       <if test="sex != null" >
+        sex = #{department,jdbcType=INTEGER},
+      </if>
+      <if test="jobNumber != null" >
+        job_number = #{jobNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="loginTime != null" >
+        login_time = #{loginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+       <if test="roleId != null">
+         role_id=#{roleId,jdbcType=VARCHAR},
+        </if>
+      <if test="column01 != null" >
+        column01 = #{column01,jdbcType=VARCHAR},
+      </if>
+      <if test="column02 != null" >
+        column02 = #{column02,jdbcType=VARCHAR},
+      </if>
+      <if test="column03 != null" >
+        column03 = #{column03,jdbcType=VARCHAR},
+      </if>
+      <if test="column04 != null" >
+        column04 = #{column04,jdbcType=VARCHAR},
+      </if>
+      <if test="column05 != null" >
+        column05 = #{column05,jdbcType=VARCHAR},
+      </if>
+      <if test="column06 != null" >
+        column06 = #{column06,jdbcType=VARCHAR},
+      </if>
+      <if test="column07 != null" >
+        column07 = #{column07,jdbcType=VARCHAR},
+      </if>
+      <if test="column08 != null" >
+        column08 = #{column08,jdbcType=VARCHAR},
+      </if>
+      <if test="column09 != null" >
+        column09 = #{column09,jdbcType=VARCHAR},
+      </if>
+      <if test="column10 != null" >
+        column10 = #{column10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ian.media.model.PowerUser" >
+    update power_user
+    set login_name = #{loginName,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      mobile_power_state = #{mobilePowerState,jdbcType=INTEGER},
+      department = #{department,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      job_number = #{jobNumber,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      login_time = #{loginTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=VARCHAR},
+      column01 = #{column01,jdbcType=VARCHAR},
+      column02 = #{column02,jdbcType=VARCHAR},
+      column03 = #{column03,jdbcType=VARCHAR},
+      column04 = #{column04,jdbcType=VARCHAR},
+      column05 = #{column05,jdbcType=VARCHAR},
+      column06 = #{column06,jdbcType=VARCHAR},
+      column07 = #{column07,jdbcType=VARCHAR},
+      column08 = #{column08,jdbcType=VARCHAR},
+      column09 = #{column09,jdbcType=VARCHAR},
+      column10 = #{column10,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

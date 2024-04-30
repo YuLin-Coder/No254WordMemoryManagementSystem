@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ian.media.dao.LinkClassMapper" >
+  <resultMap id="BaseResultMap" type="com.ian.media.model.LinkClass" >
+    <id column="classid" property="classid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="classorder" property="classorder" jdbcType="INTEGER" />
+  </resultMap>
+   <sql id="Base_Column_List">
+      classid, name, classorder
+   </sql>
+   <select id="get" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+   		select 
+   		<include refid="Base_Column_List"/>
+   		from linkClass where 1=1 
+   		<if test="name != null">
+   				and name = #{name}
+   		</if>
+   		<if test="classorder != null">
+   				and classorder = #{classorder}
+   		</if>
+   		<if test="pageIndex !=null">
+            limit #{pageIndex},#{rows}
+        </if>
+   </select>
+   <select id="getCount" resultType="int" parameterType="java.util.HashMap">
+   	select 
+   		count(*)
+   			from linkClass where 1=1 
+   		<if test="name != null">
+   				and name = #{name}
+   		</if>
+   		<if test="classorder != null">
+   				and classorder = #{classorder}
+   		</if>
+   
+   </select>
+ 	<delete id="deleteMoreByPK" parameterType = "list">
+ 	    delete from linkClass
+   			 where classid in
+     <foreach collection="list" index="index" item="item" open="("
+    separator="," close=")">
+	   #{item}  
+	</foreach>
+ 	</delete>
+ 	
+ 	<insert id="insertSelective" parameterType="com.ian.media.model.LinkClass" >
+ 		insert into  linkClass  (name, classorder)
+ 		values( #{name,jdbcType=VARCHAR}, #{classorder,jdbcType=INTEGER});
+ 	</insert>
+ 	<update id="updateByPrimaryKeySelective" parameterType="com.ian.media.model.LinkClass">
+ 	 UPDATE linkClass s
+ 		<set>
+ 		<if test="name != null" >
+     	  s.`name` = #{name,jdbcType=VARCHAR},
+     	 </if>
+ 		<if test="classorder != null" >
+       	s.`classorder` = #{classorder,jdbcType=VARCHAR}
+     	</if>
+ 		</set>
+ 		WHERE s.`classid` = #{classid,jdbcType=INTEGER}
+ 	</update>
+</mapper>

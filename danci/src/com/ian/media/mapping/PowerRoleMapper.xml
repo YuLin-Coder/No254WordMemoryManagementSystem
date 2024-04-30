@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ian.media.dao.PowerRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.ian.media.model.PowerRole" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="update_user_name" property="updateUserName" jdbcType="VARCHAR" />
+    <result column="column01" property="column01" jdbcType="VARCHAR" />
+    <result column="column02" property="column02" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, parent_id, role_name, remark, state, update_time, update_user_id, update_user_name, 
+    column01, column02
+  </sql>
+  <select id="get" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        <include refid="Base_Column_List"/>
+        from power_role
+        where 1=1
+        <if test="id != null">
+            and id=#{id,jdbcType=VARCHAR}
+        </if>
+        <if test="parentId != null">
+            and parent_id=#{parentId,jdbcType=VARCHAR}
+        </if>
+        <if test="roleName != null">
+            and role_name=#{roleName,jdbcType=VARCHAR}
+        </if>
+        <if test="remark != null">
+            and remark=#{remark,jdbcType=INTEGER}
+        </if>
+        <if test="state != null">
+            and state=#{state,jdbcType=INTEGER}
+        </if>
+         <if test="update_user_id != null">
+            and update_user_id=#{update_user_id,jdbcType=INTEGER}
+        </if>
+     
+        order by update_time desc
+        <if test="index !=null">
+            limit #{index},#{rows}
+        </if>
+
+    </select>
+    
+    <select id="getCount" resultType="int" parameterType="java.util.HashMap">
+        select
+        count(*)
+        from power_role
+        where 1=1
+        <if test="id != null">
+            and id=#{id,jdbcType=VARCHAR}
+        </if>
+        <if test="parentId != null">
+            and parent_id=#{parentId,jdbcType=VARCHAR}
+        </if>
+        <if test="roleName != null">
+            and role_name=#{roleName,jdbcType=VARCHAR}
+        </if>
+        <if test="remark != null">
+            and remark=#{remark,jdbcType=INTEGER}
+        </if>
+        <if test="state != null">
+            and state=#{state,jdbcType=INTEGER}
+        </if>
+     
+        order by update_time desc
+        <if test="index !=null">
+            limit #{index},#{rows}
+        </if>
+    </select>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from power_role
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from power_role
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteMoreByPK" parameterType="list" >
+    delete from power_role
+    where id in
+     <foreach collection="list" index="index" item="item" open="("
+    separator="," close=")">
+	   #{item}  
+	</foreach>
+  </delete>
+  
+   <insert id="insertMore" parameterType="list" >
+    insert into power_role_menu (id, menu_id, role_id) values
+     <foreach collection="list" index="index" item="item" separator="," >
+	  	 (#{item.id}, 
+         #{item.menuId}, 
+         #{item.roleId})
+	</foreach>
+  </insert>
+  
+  <insert id="insert" parameterType="com.ian.media.model.PowerRole" >
+    insert into power_role (id, parent_id, role_name, 
+      remark, state, update_time, 
+      update_user_id, update_user_name, column01, 
+      column02)
+    values (#{id,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{updateTime,jdbcType=VARCHAR}, 
+      #{updateUserId,jdbcType=VARCHAR}, #{updateUserName,jdbcType=VARCHAR}, #{column01,jdbcType=VARCHAR}, 
+      #{column02,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ian.media.model.PowerRole" >
+    insert into power_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="roleName != null" >
+        role_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id,
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name,
+      </if>
+      <if test="column01 != null" >
+        column01,
+      </if>
+      <if test="column02 != null" >
+        column02,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="column01 != null" >
+        #{column01,jdbcType=VARCHAR},
+      </if>
+      <if test="column02 != null" >
+        #{column02,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ian.media.model.PowerRole" >
+    update power_role
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="column01 != null" >
+        column01 = #{column01,jdbcType=VARCHAR},
+      </if>
+      <if test="column02 != null" >
+        column02 = #{column02,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ian.media.model.PowerRole" >
+    update power_role
+    set parent_id = #{parentId,jdbcType=VARCHAR},
+      role_name = #{roleName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      column01 = #{column01,jdbcType=VARCHAR},
+      column02 = #{column02,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

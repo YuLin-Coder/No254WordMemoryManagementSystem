@@ -1,0 +1,26 @@
+
+
+<import src="../../wxParse/wxParse.wxml"/> 
+<text class='title'>{{biaoti}}</text>
+<text class='shijian'>{{shijian}}</text>
+<view class='hui'></view>
+
+<view class="wxParse" style="margin-top:40px">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+</view>
+
+ 
+
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <image src='../../images/bg.jpg' mode='aspectFill' class='bg'></image>
+  
+     <button   bindtap="shoucangClick" class='but'><image src='../../images/but2.png' mode='aspectFill'></image><text>收藏</text></button>
+ 
+
+</form>
+
+
+
+
+

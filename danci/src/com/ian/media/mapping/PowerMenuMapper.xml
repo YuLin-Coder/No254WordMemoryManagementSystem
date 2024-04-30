@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ian.media.dao.PowerMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.ian.media.model.PowerMenu" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="update_user_name" property="updateUserName" jdbcType="VARCHAR" />
+    <result column="column01" property="column01" jdbcType="VARCHAR" />
+    <result column="Column02" property="column02" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="AllMenuResultMap" type="com.ian.media.model.PowerMenu">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="menu_name" property="menuName" jdbcType="VARCHAR"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR"/>
+        <collection property="subMenuList" ofType="com.ian.media.model.PowerMenuC">
+            <id column="id1" property="id1" jdbcType="VARCHAR"/>
+            <result column="menu_name1" property="menuName1" jdbcType="VARCHAR"/>
+            <result column="parent_id1" property="parentId1" jdbcType="VARCHAR"/>
+            <result column="url" property="url" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+  <sql id="Base_Column_List" >
+    id, parent_id, menu_name, icon, url, state, code, update_time, update_user_id, update_user_name, 
+    column01, Column02
+  </sql>
+   <select id="get" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        <include refid="Base_Column_List"/>
+        from power_menu
+        where 1=1
+        <if test="id != null">
+            and id=#{id,jdbcType=VARCHAR}
+        </if>
+        <if test="loginName != null">
+            and login_name=#{loginName,jdbcType=VARCHAR}
+        </if>
+        <if test="parentId != null">
+            and parent_id=#{parentId,jdbcType=VARCHAR}
+        </if>
+        <if test="password != null">
+            and password=#{password,jdbcType=VARCHAR}
+        </if>
+        <if test="mobilePowerState != null">
+            and mobile_power_state=#{mobilePowerState,jdbcType=INTEGER}
+        </if>
+        <if test="state != null">
+            and state=#{state,jdbcType=INTEGER}
+        </if>
+     
+        order by code asc
+        <if test="index !=null">
+            limit #{index},#{rows}
+        </if>
+
+    </select>
+    
+    <select id="getCount" resultType="int" parameterType="java.util.HashMap">
+        select
+        count(*)
+        from power_menu
+        where 1=1
+        <if test="id != null">
+            and id=#{id,jdbcType=VARCHAR}
+        </if>
+        <if test="loginName != null">
+            and login_name=#{loginName,jdbcType=VARCHAR}
+        </if>
+        <if test="parentId != null">
+            and parent_id=#{parentId,jdbcType=VARCHAR}
+        </if>
+        <if test="password != null">
+            and password=#{password,jdbcType=VARCHAR}
+        </if>
+        <if test="mobilePowerState != null">
+            and mobile_power_state=#{mobilePowerState,jdbcType=INTEGER}
+        </if>
+        <if test="state != null">
+            and state=#{state,jdbcType=INTEGER}
+        </if>
+    </select>
+  
+  <select id="getAllMenu" resultMap="AllMenuResultMap" parameterType="java.util.HashMap">
+  select
+        m.id,
+        m.menu_name,
+        m.parent_id,
+        m1.id as id1,
+        m1.menu_name as menu_name1,
+        m1.parent_id as parent_id1,
+        m1.url
+        from power_menu m left join power_menu m1 on m.id = m1.parent_id where m.parent_id = '0'
+    </select>
+    
+    <select id="getUserMenu" resultMap="AllMenuResultMap" parameterType="java.util.HashMap">
+  	select
+        m.id,
+        m.menu_name,
+        m.parent_id,
+        m.code,
+        m1.id as id1,
+        m1.menu_name as menu_name1,
+        m1.parent_id as parent_id1,
+        m1.url,
+        m1.code as code1
+        from power_menu m left join power_menu m1 on m.id = m1.parent_id where m.parent_id = '0'
+        having m.id in
+        <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and m1.id in
+        <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+         order by m.code asc,m1.code asc
+    </select>
+  
+  <select id="listMenu" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        <include refid="Base_Column_List"/>
+        from power_menu
+        where 1=1
+        <if test="id != null">
+            and id=#{id,jdbcType=VARCHAR}
+        </if>
+        <if test="parentId != null">
+            and parent_id=#{parentId,jdbcType=INTEGER}
+        </if>
+        <if test="parentIdN != null">
+            and parent_id &lt;&gt; '0'
+        </if>
+        <if test="loginName != null">
+            and login_name=#{loginName,jdbcType=VARCHAR}
+        </if>
+        <if test="userName != null">
+            and user_name=#{userName,jdbcType=VARCHAR}
+        </if>
+        <if test="userId != null">
+            and user_id=#{userId,jdbcType=VARCHAR}
+        </if>
+        <if test="loginTimer != null">
+            and login_timer=#{loginTimer,jdbcType=VARCHAR}
+        </if>
+     	<if test="datefrom != null">
+            and   date_format(login_timer,'%Y-%m-%d') &gt;=  #{datefrom,jdbcType=VARCHAR}
+        </if>
+        <if test="dateto != null">
+            and   date_format(login_timer,'%Y-%m-%d') &lt;=  #{dateto,jdbcType=VARCHAR}
+        </if>
+        <if test="index !=null">
+            limit #{index},#{rows}
+        </if>
+    </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from power_menu
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from power_menu
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ian.media.model.PowerMenu" >
+    insert into power_menu (id, parent_id, menu_name, 
+      icon, url, state, code, 
+      update_time, update_user_id, update_user_name, 
+      column01, Column02)
+    values (#{id,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{code,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=VARCHAR}, #{updateUserId,jdbcType=VARCHAR}, #{updateUserName,jdbcType=VARCHAR}, 
+      #{column01,jdbcType=VARCHAR}, #{column02,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ian.media.model.PowerMenu" >
+    insert into power_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="menuName != null" >
+        menu_name,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id,
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name,
+      </if>
+      <if test="column01 != null" >
+        column01,
+      </if>
+      <if test="column02 != null" >
+        Column02,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="column01 != null" >
+        #{column01,jdbcType=VARCHAR},
+      </if>
+      <if test="column02 != null" >
+        #{column02,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ian.media.model.PowerMenu" >
+    update power_menu
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null" >
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="column01 != null" >
+        column01 = #{column01,jdbcType=VARCHAR},
+      </if>
+      <if test="column02 != null" >
+        Column02 = #{column02,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ian.media.model.PowerMenu" >
+    update power_menu
+    set parent_id = #{parentId,jdbcType=VARCHAR},
+      menu_name = #{menuName,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      code = #{code,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      column01 = #{column01,jdbcType=VARCHAR},
+      Column02 = #{column02,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <delete id="deleteMoreByPK" parameterType="list" >
+    delete from power_menu
+    where id in
+     <foreach collection="list" index="index" item="item" open="("
+    separator="," close=")">
+	   #{item}  
+	</foreach>
+  </delete>
+  
+</mapper>

@@ -1,0 +1,7 @@
+1 简单示例
+<script language="JavaScript" type="text/javascript" src="WdatePicker.js"></script>
+<input id="date" type="text" onClick="WdatePicker()"/>
+
+2 文档参考
+  下载地址: http://www.my97.net/dp/down.asp
+  用户手册: http://www.my97.net/dp/demo/index.htm

@@ -1,0 +1,55 @@
+<!--index.wxml-->
+<!--<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>-->
+
+
+
+<view class='tit'><image src='../../images/tit1.png' mode='widthFix'></image></view>
+<view class='hui'></view>
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <image src='../../images/bg.jpg' mode='aspectFill' class='bg'></image>
+
+
+
+  <view  class='indexview'>
+    <image src='../../images/logo.jpg' class="indexlogo" ></image></view> 
+ 
+
+  <view class='hang'><view class='z'>搜索内容 :</view><input value=""   name="title" bindinput ="titleinput" placeholder="请输入搜索内容" type='text' /><view class='y'></view></view>
+  
+
+     <button   bindtap="loginBtnClick" class='but'><image src='../../images/but2.png' mode='aspectFill'></image><text>查询</text></button>
+
+
+</form> 
+
+<view class='jianxi'></view>
+<view class='biaoti'>
+  <image src='../../images/hbg.jpg' style='width:5px;height:40px;'></image>
+  <text class='word'>单词列表</text>
+</view>
+<view class='box'> 
+  <block wx:for="{{remenData}}" wx:key="img_url"  wx:for-item="webitem" wx:for-index="webindex">
+    <navigator class='li' url="/pages/shangpindetails/shangpindetails?id={{webitem.id}}"> 
+        <image src='{{urlcurrent}}{{webitem.a5}}'  mode='aspectFill'></image>
+      <view class='you'>
+        <text class='tp'>{{webitem.a1}}</text>
+        
+        <text class='bt'>
+       {{webitem.leixing}}
+        </text>
+      </view>
+    </navigator>
+    <!--hang-->
+  </block>
+</view>

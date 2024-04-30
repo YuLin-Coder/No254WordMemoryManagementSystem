@@ -1,0 +1,29 @@
+<!--logs.wxml-->
+<!--<view class="container log-list">
+  <block wx:for="{{logs}}" wx:for-item="log">
+    <text class="log-item">{{index + 1}}. {{log}}</text>
+  </block>
+</view>-->
+<view class='tit'><image src='../../images/tit1.png' mode='widthFix'></image></view>
+<view class='hui'></view>
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <image src='../../images/bg.jpg' mode='aspectFill' class='bg'></image>
+
+
+
+  <view  class='indexview'>
+    <image src='../../images/logo.jpg' class="indexlogo" ></image></view>
+ 
+
+
+
+ 
+  
+  <view class='hang'><view class='z'>用户名 :</view><input value="{{username}}"  bindinput ="loginNameinput" name="username" placeholder="请输入用户名"  type='text' /><view class='y'></view></view>
+  <view class='hang'><view class='z'>密码 :</view><input value="{{pwd}}"  bindinput ="passwordinput"  name="pwd" placeholder="请输入密码" type='text' /><view class='y'></view></view>
+  
+<!--
+     <button formType="submit" class='but'><image src='../../images/but2.png' mode='aspectFill'></image><text>注册</text></button>
+-->
+         <button   bindtap="loginBtnClick" class='but'><image src='../../images/but2.png' mode='aspectFill'></image><text>注册</text></button>
+</form>

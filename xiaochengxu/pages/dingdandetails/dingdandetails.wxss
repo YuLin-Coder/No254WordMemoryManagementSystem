@@ -1,0 +1,109 @@
+
+/* pages/boy_about/boy_about.wxss */
+.title{
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  display: block;
+}
+.shijian{
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+  color: #333;
+  text-align: center;
+  display: block;
+}
+.hui{
+  height: 10px;
+  background-color: #f7f7f7;
+  margin-bottom: 20px;
+}
+.box{
+  width: 95%;
+  margin: 0 auto 30px;
+  overflow: hidden;
+  zoom:1;
+  background-color: #b8f7f7;
+  padding: 30px 0;
+  border-radius: 5px;
+}
+.box text{
+  display: block;
+  overflow: hidden;
+  zoom:1;
+  font-size: 12px;
+  color: #333;
+  line-height: 25px;
+  text-indent: 2rem;
+  width: 90%;
+  margin: 0 auto;
+}
+.box image{
+  display: block;
+  width: 100px;
+  height: 100px;
+  padding: 30px;
+  background-color: #13e5de;
+  margin: 10px auto;
+}
+.box .di{
+  text-indent: 0;
+  text-align: center;
+}
+
+form .hang{
+  overflow: hidden;
+  zoom:1;
+  width:90%;
+  margin: 0 auto 10px;
+}
+form .hang .z{
+  float: left;
+  width: 80px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  color: #333;
+}
+form .hang input{
+  float: left;
+  width: 50%;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 5px;
+  border: 1px solid #13e6e6;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #333;
+}
+form .hang .z text{
+  opacity: 0;
+}
+form .hang .y{
+  float: right;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  color: #333;
+}
+form .hang .x{
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  color: #333;
+  margin-left:8px;
+ 
+}
+form .hang .xx{
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  color: #333;
+   margin-left:8px;
+}

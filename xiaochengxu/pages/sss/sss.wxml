@@ -1,0 +1,20 @@
+
+
+<import src="../../wxParse/wxParse.wxml"/> 
+<text class='title'>{{title}}</text>
+<view class='hui'></view>
+<view class="section tc">
+  <video id="myVideo" src="{{videosrc}}" controls></video>
+  <view class="btn-area">
+  
+   
+  </view>
+</view>
+
+ 
+<view class="wxParse">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+</view>
+
+
+

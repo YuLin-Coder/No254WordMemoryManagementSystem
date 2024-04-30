@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ian.media.dao.LogLoginMapper" >
+  <resultMap id="BaseResultMap" type="com.ian.media.model.LogLogin" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="login_timer" property="loginTimer" jdbcType="VARCHAR" />
+    <result column="column01" property="column01" jdbcType="VARCHAR" />
+    <result column="column02" property="column02" jdbcType="VARCHAR" />
+    <result column="column03" property="column03" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type, login_name, user_name, user_id, login_timer, column01, column02, column03
+  </sql>
+  
+  <select id="listLogLogin" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        <include refid="Base_Column_List"/>
+        from log_login
+        where 1=1
+        <if test="id != null">
+            and id=#{id,jdbcType=VARCHAR}
+        </if>
+        <if test="type != null">
+            and type=#{type,jdbcType=INTEGER}
+        </if>
+        <if test="loginName != null">
+            and login_name=#{loginName,jdbcType=VARCHAR}
+        </if>
+        <if test="userName != null">
+            and user_name=#{userName,jdbcType=VARCHAR}
+        </if>
+        <if test="userId != null">
+            and user_id=#{userId,jdbcType=VARCHAR}
+        </if>
+        <if test="loginTimer != null">
+            and login_timer=#{loginTimer,jdbcType=VARCHAR}
+        </if>
+     	<if test="datefrom != null">
+            and   date_format(login_timer,'%Y-%m-%d') &gt;=  #{datefrom,jdbcType=VARCHAR}
+        </if>
+        <if test="dateto != null">
+            and   date_format(login_timer,'%Y-%m-%d') &lt;=  #{dateto,jdbcType=VARCHAR}
+        </if>
+        order by login_timer desc
+        <if test="pageIndex !=null">
+            limit #{pageIndex},#{rows}
+        </if>
+    </select>
+  
+  
+  <select id="get" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        <include refid="Base_Column_List"/>
+        from log_login
+        where 1=1
+        <if test="id != null">
+            and id=#{id,jdbcType=VARCHAR}
+        </if>
+        <if test="type != null">
+            and type=#{type,jdbcType=INTEGER}
+        </if>
+        <if test="loginName != null">
+            and login_name=#{loginName,jdbcType=VARCHAR}
+        </if>
+        <if test="userName != null">
+            and user_name=#{userName,jdbcType=VARCHAR}
+        </if>
+        <if test="userId != null">
+            and user_id=#{userId,jdbcType=VARCHAR}
+        </if>
+        <if test="loginTimer != null">
+            and login_timer=#{loginTimer,jdbcType=VARCHAR}
+        </if>
+     
+        order by login_timer desc
+        <if test="pageIndex !=null">
+            limit #{pageIndex},#{rows}
+        </if>
+    </select>
+    
+    <select id="getCount" resultType="int" parameterType="java.util.HashMap">
+        select
+        count(*)
+        from log_login
+        where 1=1
+         <if test="id != null">
+            and id=#{id,jdbcType=VARCHAR}
+        </if>
+        <if test="type != null">
+            and type=#{type,jdbcType=INTEGER}
+        </if>
+        <if test="loginName != null">
+            and login_name=#{loginName,jdbcType=VARCHAR}
+        </if>
+        <if test="userName != null">
+            and user_name=#{userName,jdbcType=VARCHAR}
+        </if>
+        <if test="userId != null">
+            and user_id=#{userId,jdbcType=VARCHAR}
+        </if>
+        <if test="loginTimer != null">
+            and login_timer=#{loginTimer,jdbcType=VARCHAR}
+        </if>
+    </select>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from log_login
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from log_login
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+   <delete id="deleteMoreByPK" parameterType="list" >
+    delete from log_login
+    where id in
+     <foreach collection="list" index="index" item="item" open="("
+    separator="," close=")">
+	   #{item}  
+	</foreach>
+  </delete>
+  
+  <insert id="insert" parameterType="com.ian.media.model.LogLogin" >
+    insert into log_login (id, type, login_name, 
+      user_name, user_id, login_timer, 
+      column01, column02, column03
+      )
+    values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{loginTimer,jdbcType=VARCHAR}, 
+      #{column01,jdbcType=VARCHAR}, #{column02,jdbcType=VARCHAR}, #{column03,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ian.media.model.LogLogin" >
+    insert into log_login
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="loginTimer != null" >
+        login_timer,
+      </if>
+      <if test="column01 != null" >
+        column01,
+      </if>
+      <if test="column02 != null" >
+        column02,
+      </if>
+      <if test="column03 != null" >
+        column03,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTimer != null" >
+        #{loginTimer,jdbcType=VARCHAR},
+      </if>
+      <if test="column01 != null" >
+        #{column01,jdbcType=VARCHAR},
+      </if>
+      <if test="column02 != null" >
+        #{column02,jdbcType=VARCHAR},
+      </if>
+      <if test="column03 != null" >
+        #{column03,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ian.media.model.LogLogin" >
+    update log_login
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTimer != null" >
+        login_timer = #{loginTimer,jdbcType=VARCHAR},
+      </if>
+      <if test="column01 != null" >
+        column01 = #{column01,jdbcType=VARCHAR},
+      </if>
+      <if test="column02 != null" >
+        column02 = #{column02,jdbcType=VARCHAR},
+      </if>
+      <if test="column03 != null" >
+        column03 = #{column03,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ian.media.model.LogLogin" >
+    update log_login
+    set type = #{type,jdbcType=INTEGER},
+      login_name = #{loginName,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      login_timer = #{loginTimer,jdbcType=VARCHAR},
+      column01 = #{column01,jdbcType=VARCHAR},
+      column02 = #{column02,jdbcType=VARCHAR},
+      column03 = #{column03,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

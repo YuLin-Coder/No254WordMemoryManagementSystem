@@ -1,0 +1,33 @@
+
+
+<import src="../../wxParse/wxParse.wxml"/> 
+<text class='title'>{{title}}</text>
+<text class='shijian'>{{shijian}}</text>
+<view class='hui'></view>
+
+<view class="wxParse" style="margin-top:40px">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+</view>
+
+
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+
+
+ <view class='hang'><view class='z'>评价人:</view><input  value="{{pingjiaren}}" bindinput ="pingjiareninput"  name="pingjiaren" placeholder="请输入评价人"  type='text' /><view class='y'></view></view>
+  <view class='hang'><view class='z'>学习模范:</view><input value="{{songcanyuan}}" bindinput ="songcanyuaninput"     name="songcanyuan" placeholder="请输入学习模范"  type='text' /><view class='y'></view></view>
+  <view class='hang'><view class='z'>内容 :</view>
+  <view>
+  <textarea rows="13" name="content"  bindinput ="neironginput"      cols="20">
+
+   </textarea>
+   </view>
+</view>
+
+
+
+<view>
+     <button   bindtap="pingjiaclick" class='but'><text>评价</text></button>
+</view>
+
+</form>

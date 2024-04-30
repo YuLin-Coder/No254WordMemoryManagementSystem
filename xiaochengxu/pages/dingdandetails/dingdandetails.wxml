@@ -1,0 +1,20 @@
+
+
+<import src="../../wxParse/wxParse.wxml"/> 
+<text class='title'>{{title}}</text>
+<text class='shijian'>{{shijian}}</text>
+<view class='hui'></view>
+
+<view class="wxParse">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+</view> 
+<form bindsubmit="formSubmit" bindreset="formReset">
+
+
+
+
+<view>
+     <button   bindtap="shanchuclick" class='but'><text>删除</text></button>
+</view>
+
+</form>

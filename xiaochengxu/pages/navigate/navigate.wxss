@@ -1,0 +1,274 @@
+/* pages/navigate/navigate.wxss */
+.tx_box{
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 10px;
+  overflow: hidden;
+  zoom:1;
+  position: relative;
+}
+.tx_box .tx{
+  display: block;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  zoom:1;
+}
+.tx_box .bq{
+  width:25px;
+  height: 25px;
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.nc{
+  display: block;
+  overflow: hidden;
+  zoom:1;
+  height: 55px;
+  line-height: 55px;
+  text-align: center;
+  width: 170px;
+  margin: 0 auto 20px;
+}
+.nc image{
+  width: 30px;
+  height: 30px;
+  float: left;
+  margin-top: 17px;
+}
+.nc text{
+  font-size: 14px;
+  color: #333;
+  width: 100px;
+  padding-top: 10px;
+  float: left;
+  
+}
+.hui{
+  height: 10px;
+  background-color: #f5f5f5;
+}
+.sige{
+  width: 90%;
+  margin: 20px auto;
+  overflow: hidden;
+  zoom:1;
+}
+.sige navigator{
+  float: left;
+  width: 25%;
+  overflow: hidden;zoom:1;
+}
+.sige navigator image{
+  width: 60%;
+  display: block;
+  margin: 0 auto 10px;
+}
+.sige navigator text{
+  display: block;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+  overflow: hidden;
+  zoom:1;
+}
+.jia{
+  width: 90%;
+  margin: 0 auto 30px;
+  display: block;
+  border:1px solid #52e6ca;
+  border-radius: 5px;
+  overflow: hidden;
+  zoom:1;
+  padding-top: 20px;
+}
+.jia .title{
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+  color: #333;
+  text-align: center;
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+}
+.jia .hao{
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 20px;
+}
+.wancheng{
+  width: 80%;
+  margin: 0 auto 20px;
+  overflow: hidden;
+  zoom:1;
+}
+.wancheng .tit{
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
+  color: #666;
+  width: 25%;
+}
+.wancheng .y{
+  float: right;
+  width: 68%;
+  overflow: hidden;zoom:1;
+}
+.wancheng .y .tiao{
+  width: 100%;
+  height: 10px;
+  background-color: #0b4534;
+  border-radius: 10px;
+  margin-top: 10px;
+  position: relative;
+}
+.wancheng .y .tiao .dw{
+  width: 80%;
+  height: 10px;
+  border-radius: 10px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #43c5ae;
+}
+.wancheng .y text{
+  display: block;
+  width: 85%;
+  text-align: right;
+  font-size: 14px;
+  color: #999;
+}
+.but{
+  width: 180px;
+  height: 45px;
+  line-height: 45px;
+  margin: 0 auto 30px;
+  position: relative;
+  border-radius: 25px;
+  overflow: hidden;
+  zoom:1;
+  margin-top: 30px;
+}
+.but image{
+  width: 100%;
+  height: 45px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 99;
+}
+.but button{
+  display: block;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  background: none;
+  text-align: center;
+  font-size: 16px;
+  border: none;
+  color: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 999;
+ 
+
+}
+.modal-box{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0px;
+  background:rgba(0,0,0,0.4);
+  overflow: hidden;
+  }
+
+.modal-body{
+  position:relative;
+  }
+
+.modal-content{
+  /* width: 60%; */
+  margin:0 auto;
+  overflow: hidden;
+  border-radius: 10rpx;
+  display: block;
+}
+
+.modal-content{
+  width: 60%;
+  height:auto; 
+}
+
+.text_input{
+  width: 80%;
+  height: 40px;
+  line-height: 40px;
+  margin: 70% auto 10%;
+  display: block;
+  padding: 0 10px;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #13e8b4;
+}
+.knowBtn{
+  background-color: #13e8b4;
+  width: 100%;
+  margin: 0 auto;
+  color: #fff;
+  height: 35px;
+  line-height: 35px;
+}
+
+.thaizi{
+  /* position: absolute; */
+  width: 100%;
+  left: 0;
+  top: 20px;
+  z-index: 3;
+  display: flex;
+  padding: 0 5%;
+  box-sizing: border-box;
+  color:#b2b2b2;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+.hzlb{
+   width:auto;
+}
+
+.thaizi .section{
+  padding-left: 8px;
+}
+ .x{
+  float: right;
+  line-height: 40px;
+  font-size: 16px;
+  color: #333;
+  margin-left:8px;
+  width: 30px;
+  height: 30px
+ 
+}
+ .x image{
+  float: right;
+  line-height: 40px;
+  font-size: 16px;
+  color: #333;
+  margin-left:8px;
+  width: 30px;
+  height: 30px
+ 
+}

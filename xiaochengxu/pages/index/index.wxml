@@ -1,0 +1,38 @@
+<!--logs.wxml-->
+<!--<view class="container log-list">
+  <block wx:for="{{logs}}" wx:for-item="log">
+    <text class="log-item">{{index + 1}}. {{log}}</text>
+  </block>
+</view>-->
+<view class='tit'><image src='../../images/tit1.png' mode='widthFix'></image></view>
+<view class='hui'></view>
+<form bindsubmit="formSubmit" bindreset="formReset" class='bg'>
+  <image src='../../images/bg.jpg' mode='aspectFill' ></image>
+
+
+
+  <view  class='indexview'>
+    <image src='../../images/logo.jpg' class="indexlogo" ></image></view>
+ 
+
+
+    
+ 
+  
+  <view class='hang'><view class='z'>欢迎您 : 
+  </view>
+  
+  <label class="label-2__text" for="{{item.name}}">
+        <text>{{username}}</text>   
+  </label> 
+ <view class='y1'> 
+     <image bindtap="shuaxinclick"  src='../../images/sx.png' style="width:40px;height:40px;" /></view>
+
+ <view class='y'></view></view>
+   
+     <button bindtap="tapName" class='but'><image src='../../images/but2.png' mode='aspectFill'></image><text>注销</text></button>
+ 
+
+
+</form>
+ 

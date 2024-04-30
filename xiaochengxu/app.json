@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/index/index", 
+    "pages/logs/logs",
+    "pages/navigate/navigate",
+    "pages/sss/sss", 
+    "pages/details/details", 
+     "pages/dingdan/dingdan",  
+      "pages/yuangong/yuangong",  
+      "pages/shangpin/shangpin", 
+      "pages/dingdandetails/dingdandetails",
+      "pages/saoma/saoma",
+      "pages/sssdetails/sssdetails", 
+       "pages/zhuce/zhuce", 
+       "pages/shangpindetails/shangpindetails", 
+       
+         "pages/login/login"
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#A7373E",
+    "navigationBarTitleText": "单词记忆",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "list": [
+      
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/menu_icon_0_normal.png",
+        "selectedIconPath": "images/menu_icon_0_pressed.png"
+      },
+      {
+        "pagePath": "pages/shangpin/shangpin",
+        "text": "单词文章",
+        "iconPath": "images/tabbar_order.png",
+        "selectedIconPath": "images/tabbar_order_selected.png"
+      },
+     
+      {
+        "pagePath": "pages/yuangong/yuangong",
+        "text": "学习模范",
+        "iconPath": "images/case2.png",
+        "selectedIconPath": "images/case5.png"
+      },
+      {
+        "pagePath": "pages/dingdan/dingdan",
+        "text": "我的收藏",
+        "iconPath": "images/nav1.png",
+        "selectedIconPath": "images/nav1_select.png"
+      }
+    ],
+    "position": "bottom"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
+}

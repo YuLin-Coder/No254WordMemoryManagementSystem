@@ -1,0 +1,65 @@
+<!--index.wxml-->
+<!--<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>-->
+
+
+
+<view class="btn-area">
+  <!--<navigator url="/pages/navigate/navigate?title=navigate" hover-class="navigator-hover">跳转到新页面</navigator>-->
+  <swiper class='swiper' indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="#fff" indicator-active-color="#2dbebe">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" width="355" height="150"/>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<view class='jianxi'></view>
+<view class='biaoti'>
+  <image src='../../images/hbg.jpg' style='width:5px;height:40px;'></image>
+  <text class='word'>通讯录列表</text>
+</view>
+
+<!--<form bindsubmit="formSubmit" bindreset="formReset">
+
+
+  <view class='hang'>
+    <view class='z'>题目 :</view>
+    <input value="{{username}}"  name="username" placeholder="请输入题目"  type='text' />
+    <view class='y'></view>
+  </view>
+
+  <button formType="submit" class='but'>
+    <image src='../../images/but2.png' mode='aspectFill'></image>
+    <text>查询</text>
+  </button>
+
+
+</form>-->
+<view class='box'>
+  <block wx:for="{{remenData}}" wx:key="a1"  wx:for-item="webitem" wx:for-index="webindex">
+    <navigator class='li' url="/pages/xuanti/xuanti?id={{webitem.id}}"> 
+      <view class='you'>
+        <text class='tp'>{{webitem.a1}}</text>
+      <image src='{{webitem.a8}}' style="width:80px;" mode='aspectFill'></image>
+        
+        <text class='bt'>
+         性别： {{webitem.a2}} 班级： {{webitem.a3}} 电话： {{webitem.a4}}<br/>
+          邮箱： {{webitem.a5}}  生日： {{webitem.a6}}   
+        </text>
+      </view>
+    </navigator>
+    <!--hang-->
+  </block>
+</view>

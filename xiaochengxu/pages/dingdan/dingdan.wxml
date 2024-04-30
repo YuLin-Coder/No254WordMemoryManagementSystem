@@ -1,0 +1,36 @@
+<!--index.wxml-->
+<!--<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>--> 
+ 
+
+<view class='jianxi'></view>
+<view class='biaoti'>
+  <image src='../../images/hbg.jpg' style='width:5px;height:40px;'></image>
+  <text class='word'>收藏列表</text>
+ <view class='y1'> 
+     <image bindtap="shuaxinclick"  src='../../images/sx.png' style="width:40px;height:40px;" /></view>
+
+</view>
+<view class='box'>
+  <block wx:for="{{remenData}}" wx:key="img_url"  wx:for-item="webitem" wx:for-index="webindex">
+    <navigator class='li' url="/pages/dingdandetails/dingdandetails?id={{webitem.id}}"> 
+      <view class='you'>
+        <text class='tp'>{{webitem.a1}}</text>
+        <text class='bt'>
+          {{webitem.a5}}
+        </text>
+      </view>
+    </navigator>
+    <!--hang-->
+  </block>
+</view>

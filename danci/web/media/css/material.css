@@ -1,0 +1,289 @@
+.views {
+    position: relative;
+    border: 1px solid #EBE7E7;
+    font-size: 16px;
+    padding: 10px;
+    background: #ffffff;
+    border-bottom: none;
+}
+
+
+.bottom1 {
+    height: 48px;
+    border: 1px solid #EBE7E7;
+    border-top: none;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #f4f4f4;
+    border-top: 1px solid #E7E7EB;
+}
+
+
+
+.editButton {
+    padding-top: 15px;
+    line-height: 3;
+    height: 48px;
+    border-right: 1px solid #E7E7EB;
+
+}
+
+.addButton {
+    margin-left: 60px;
+}
+
+.deleteButton {
+    padding-top: 15px;
+    line-height: 3;
+    height: 48px;
+}
+
+.createTime {
+    font-size: 14px;
+    color: #666666;
+}
+
+.description {
+    font-size: 13px;
+    color: #666666;
+}
+
+
+.active{
+    color: #000000;
+}
+
+
+/*多图文CSS开始*/
+/*图片透明层*/
+
+
+
+.manyNewsImageMask{
+    position: absolute;
+    bottom: 10px;
+    width: 274px;
+    background: rgba(0,0,0,0.6)!important;
+    padding-top: 10px;
+    color: #ffffff;
+}
+
+.manyNewsImageMask > p{
+    font-size: 15px;
+    width: 260px;
+    word-wrap: break-word;
+    margin-left: 5px;
+}
+
+.subViews{
+    width: 294px;
+    height: 119px;
+    border:1px solid #EBE7E7;
+    border-bottom: none;
+    font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    font-size: 14px;
+}
+
+.subViews > img{
+    float: right;
+    width: 78px;
+    height: 78px;
+    margin-top: 20px;
+    margin-right: 14px;
+}
+
+.subViews > p{
+    margin-left: 10px;
+    margin-top: 30px;
+    width: 175px;
+    line-height: 24px;
+    max-height: 48px;
+    overflow: hidden;
+}
+
+ .icon_appmsg_create{
+        background: url("../images/media_list.png") 0 0 no-repeat;
+        width: 38px;
+        height: 38px;
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+
+    .icon_appmsg_create:hover{
+        background: url("../images/media_list.png") 0 -48px no-repeat;
+    }
+
+    .icon_appmsg_create:hover+strong{
+       color: #b3b3b3;
+    }
+
+    .icon_appmsg_create.multi{
+        background:url("../images/media_list.png") 0 -96px no-repeat;
+    }
+
+    .icon_appmsg_create.multi:hover{
+        background:url("../images/media_list.png") 0 -144px no-repeat;
+    }
+
+    .create_access{
+        display: block;
+        border: 2px dotted #d9dadc;
+        line-height: 80px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .create_access a{
+        vertical-align: middle;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: #d9d9d9;
+        font-size: 14px;
+        line-height: normal;
+        display: inline-block;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        color: #d9d9d9;
+        font-size: 14px;
+        line-height: normal;
+        cursor: pointer;
+    }
+
+    .create_access strong {
+        display: block;
+        font-weight: 400;
+        font-style: normal;
+
+        color: #d9d9d9;
+        font-size: 14px;
+        line-height: normal;
+    }
+
+
+    .singleTitle:hover{
+        color: #b3b3b3;
+    }
+
+    .singleTitle:hover + i{
+        background: url("../images/media_list.png") 0 -48px no-repeat;
+    }
+
+    .mutiTitle:hover{
+        color: #b3b3b3;
+    }
+
+    .mutiTitle:hover + i{
+        background:url("../images/media_list.png") 0 -144px no-repeat;
+    }
+
+
+
+    .icon18_common {
+        width: 18px;
+        height: 18px;
+        vertical-align: middle;
+        display: inline-block;
+        line-height: 100px;
+        overflow: hidden;
+    }
+
+    .icon18_common.edit_gray {
+        background: url("../images/base.png") 0 -5960px no-repeat;
+    }
+
+    .icon18_common.del_gray {
+        background: url("../images/base.png") 0 -5316px no-repeat;
+    }
+
+
+    .icon18_common.edit_gray:hover, a:hover .icon18_common.edit_gray {
+        background: url("../images/base.png") 0 -5988px no-repeat;
+    }
+
+    a:hover .icon18_common.del_gray, .icon18_common.del_gray:hover {
+        background: url("../images/base.png") 0 -5344px no-repeat;
+    }
+
+ 
+   .news-blocks{
+        border-bottom: 1px solid #EBE7E7;
+        margin-bottom: 20px;
+        position: relative;
+
+    }
+
+
+    .mask{
+        position: absolute;
+        top: 0px;
+        z-index: 100;
+        background-color: #000000;
+        width: 296px;
+        height: 100%;
+        opacity: 0.7;
+        display: none;
+    }
+
+    .selected{
+        position: absolute;
+        text-align: center;
+        vertical-align: middle;
+        top: 0px;
+        z-index: 101;
+        width: 296px;
+        height: 100%;
+        display: none;
+    }
+
+
+    .selected > i{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -23px;
+        margin-left: -23px;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+
+    a:hover {
+        text-decoration:none;
+    }
+
+    a > i{
+        color: #cccccc;
+    }
+
+    a:hover > i{
+        color: #000000;
+    }
+
+    .active{
+        color: #000000;
+    }
+
+
+
+
+    .icon_msg_sender {
+        margin-right: 3px;
+        margin-top: 8px;
+        margin-left: 20px;;
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+        display: inline-block;
+        cursor: pointer;
+        text-decoration: none;
+        color: #222;
+        outline: 0;
+        float: left;
+        font-size: 14px;
+        background: url("../images/msg_tab.png") 0 -360px no-repeat;
+    }
+
+    .icon_msg_sender:hover{
+        background: url("../images/msg_tab.png") 0 -420px no-repeat;
+    }

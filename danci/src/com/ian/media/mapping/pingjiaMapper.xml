@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ian.media.dao.pingjiaMapper" >
+  <resultMap id="BaseResultMap" type="com.ian.media.model.pingjia" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ian.media.model.pingjia" extends="BaseResultMap" >
+    <result column="a1" property="a1" jdbcType="LONGVARCHAR" />
+    <result column="a2" property="a2" jdbcType="LONGVARCHAR" />
+    <result column="a3" property="a3" jdbcType="LONGVARCHAR" />
+    <result column="a4" property="a4" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+		id, a1,a2,a3,a4
+  	</sql>
+	<select id="get" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+		select
+		<include refid="Base_Column_List" />
+		from pingjia
+		where 1=1
+		
+		<if test="id !=null">
+			and id = #{id,jdbcType=VARCHAR}
+   		</if>
+		<if test="a1 !=null">
+			and a1 = #{a1,jdbcType=VARCHAR}
+   		</if>
+		<if test="a2 !=null">
+			and a2 = #{a2,jdbcType=VARCHAR}
+   		</if>
+   		<if test="a3 !=null">
+			and a3 = #{a3,jdbcType=VARCHAR}
+   		</if>
+   		<if test="a4 !=null">
+			and a4 = #{a4,jdbcType=VARCHAR}
+   		</if>
+   		
+   		ORDER BY id ASC, a1 ASC	
+		<if test="pageIndex !=null">
+			limit #{pageIndex},#{rows}
+        </if>
+	</select>
+	<select id="getCount" resultType="int" parameterType="java.util.HashMap">
+		select
+		count(*)
+		from pingjia
+		where 1=1
+		<if test="a1 !=null">
+			and a1 = #{a1,jdbcType=VARCHAR}
+   		</if>
+		<if test="a2 !=null">
+			and a2 = #{a2,jdbcType=VARCHAR}
+   		</if>
+   		<if test="a3 !=null">
+			and a3 = #{a3,jdbcType=VARCHAR}
+   		</if>
+   		<if test="a4 !=null">
+			and a4 = #{a4,jdbcType=VARCHAR}
+   		</if>
+	</select>
+	<delete id="deleteMoreByPK" parameterType="list">
+		delete from pingjia
+		where id in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}  
+		</foreach>
+	</delete>
+	<insert id="insertSelective" parameterType="com.ian.media.model.pingjia">
+		insert into pingjia
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="a1 != null" >
+        a1,
+      </if>
+      <if test="a2 != null" >
+        a2,
+      </if>
+      <if test="a3 != null" >
+        a3,
+      </if>
+        <if test="a4 != null" >
+        a4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="a1 != null" >
+        #{a1,jdbcType=VARCHAR},
+      </if>
+      <if test="a2 != null" >
+        #{a2,jdbcType=VARCHAR},
+      </if>
+      <if test="a3 != null" >
+        #{a3,jdbcType=VARCHAR},
+      </if>
+        <if test="a4 != null" >
+        #{a4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+ 	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.ian.media.model.pingjia">
+		UPDATE pingjia s
+		<set>
+		<if test="a1 != null">
+				s.`a1` = #{a1,jdbcType=VARCHAR},
+     	</if>
+		<if test="a2 != null">
+				s.`a2` = #{a2,jdbcType=VARCHAR},
+     	</if>
+		<if test="a3 != null">
+				s.`a3` = #{a3,jdbcType=VARCHAR},
+     	</if>
+     		<if test="a4 != null">
+				s.`a4` = #{a4,jdbcType=VARCHAR},
+     	</if>
+		</set>
+		WHERE s.`id` = #{id,jdbcType=INTEGER}
+	</update>
+  <insert id="insertdingdan" parameterType="com.ian.media.model.dingdan">
+		insert into dingdan
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="a1 != null" >
+        a1,
+      </if>
+      <if test="a2 != null" >
+        a2,
+      </if>
+      <if test="a3 != null" >
+        a3,
+      </if>
+        <if test="a4 != null" >
+        a4,
+      </if>
+       <if test="a5 != null" >
+        a5,
+      </if>
+       <if test="a6 != null" >
+        a6,
+      </if>
+       <if test="a7 != null" >
+        a7,
+      </if>
+       <if test="a8 != null" >
+        a8,
+      </if>
+          <if test="a9 != null" >
+        a9,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="a1 != null" >
+        #{a1,jdbcType=VARCHAR},
+      </if>
+      <if test="a2 != null" >
+        #{a2,jdbcType=VARCHAR},
+      </if>
+      <if test="a3 != null" >
+        #{a3,jdbcType=VARCHAR},
+      </if>
+        <if test="a4 != null" >
+        #{a4,jdbcType=VARCHAR},
+      </if>
+      <if test="a5 != null" >
+        #{a5,jdbcType=VARCHAR},
+      </if>
+      <if test="a6 != null" >
+        #{a6,jdbcType=VARCHAR},
+      </if>
+      <if test="a7 != null" >
+        #{a7,jdbcType=VARCHAR},
+      </if>
+      <if test="a8 != null" >
+        #{a8,jdbcType=VARCHAR},
+      </if>
+      <if test="a9 != null" >
+        #{a9,jdbcType=VARCHAR},
+      </if>
+    </trim>
+ 	</insert>
+  
+  
+  
+</mapper>
